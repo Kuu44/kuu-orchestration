@@ -1,0 +1,4 @@
+interface:
+  display_name: "Kuu Orchestration Advisor"
+  short_description: "Route Fast and Deep implementation with fresh review"
+  default_prompt: "Use $advisor to route, implement, review, integrate, and verify this software change."

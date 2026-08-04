@@ -1,0 +1,20 @@
+{
+  "name": "kuu-orchestration",
+  "interface": {
+    "displayName": "Kuu Orchestration"
+  },
+  "plugins": [
+    {
+      "name": "kuu-orchestration",
+      "source": {
+        "source": "local",
+        "path": "./plugins/kuu-orchestration"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
