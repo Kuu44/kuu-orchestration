@@ -1,6 +1,6 @@
 # Kuu Orchestration
 
-Kuu Orchestration is a small Codex plugin for native-subagent software delivery. The primary task owns requirements, routing, integration, and acceptance; implementers write production code; a fresh reviewer evaluates every round.
+Kuu Orchestration is a small Codex plugin for native-subagent software delivery. The primary task owns requirements, routing, integration, and acceptance; implementers write every shipped code/config line; a fresh reviewer evaluates every round.
 
 | Lane | Route | Use it when |
 |---|---|---|
@@ -24,7 +24,7 @@ default_subagent_model = "gpt-5.6-luna"
 default_subagent_reasoning_effort = "max"
 ```
 
-Deep implementation and every fresh reviewer request GPT-5.6 Sol with High effort explicitly. There is no model fallback.
+Deep implementation and every fresh reviewer request GPT-5.6 Sol with High effort explicitly and must stop if that route is unavailable. There is no model fallback.
 
 ## Install
 
@@ -36,8 +36,10 @@ codex plugin add kuu-orchestration@kuu-orchestration
 After cloning, `./install.ps1` runs the same two official commands with exit-code checks. Start a new Codex task after installation, then ask normally for a software change or invoke the skill:
 
 ```text
-Use $advisor to implement and verify this change.
+Use $kuu-orchestration:advisor to implement and verify this change.
 ```
+
+When the skills catalog is truncated, the full `$kuu-orchestration:advisor` namespace is required; `$advisor` does not resolve reliably.
 
 ## Update
 

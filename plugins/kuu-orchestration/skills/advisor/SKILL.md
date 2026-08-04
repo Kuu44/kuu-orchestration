@@ -1,11 +1,11 @@
 ---
 name: advisor
-description: "Route substantive software changes through native Fast or Deep implementers, require a fresh isolated reviewer for every round, and keep integration and verification in the primary task. Use for implementation, bug fixes, refactors, migrations, security-sensitive changes, and other production-code work that benefits from delegated execution and independent review."
+description: "Route substantive software changes through native Fast or Deep implementers, require a fresh isolated reviewer for every round, and keep integration and verification in the primary task. Use for implementation, configuration changes, bug fixes, refactors, migrations, security-sensitive changes, and other shipped code or configuration work that benefits from delegated execution and independent review."
 ---
 
 # Kuu Orchestration Advisor
 
-Own requirements, decomposition, routing, integration, and acceptance in the primary task. Require every production-code line to come from an implementer subagent and pass a fresh reviewer. Do not apply this workflow inside realtime voice executive coordination; hand execution to an orchestration-manager task that uses this skill.
+Own requirements, decomposition, routing, integration, and acceptance in the primary task. Require every shipped code/config line to come from an implementer subagent and pass a fresh reviewer. Do not apply this workflow inside realtime voice executive coordination; hand execution to an orchestration-manager task that uses this skill.
 
 ## 1. Understand before splitting
 
@@ -62,7 +62,7 @@ For Deep, request `gpt-5.6-sol` with `high` effort and a fresh context by settin
 
 ## 4. Require fresh review
 
-For every review round, start a new `gpt-5.6-sol` reviewer at `high` effort with `fork_turns: none`. Give the reviewer only:
+For every review round, start a new `gpt-5.6-sol` reviewer at `high` effort with `fork_turns: none`. Stop if that route is unavailable; do not substitute another model. Give the reviewer only:
 
 - `GOAL`
 - `CONSTRAINTS`
@@ -79,4 +79,4 @@ After a second non-shippable Fast attempt, route to a fresh Deep Sol High implem
 
 ## 5. Integrate
 
-Treat implementer and reviewer reports as claims. The primary task must inspect the actual diff, confirm file scope, run `DONE WHEN`, reconcile any concurrent changes, and report shipped, failed, or skipped checks. The primary may decompose, gate, integrate, and verify, but must not write production code.
+Treat implementer and reviewer reports as claims. The primary task must inspect the actual diff, confirm file scope, run `DONE WHEN`, reconcile any concurrent changes, and report shipped, failed, or skipped checks. The primary may decompose, gate, integrate, and verify, but must not write shipped code or configuration.
