@@ -56,13 +56,17 @@ DONE WHEN
 
 State file ownership and warn that other agents share the workspace: preserve others' edits, never revert them, and adapt to concurrent changes. Split an overlong unit. An implementer may spawn at most one bounded child, and total delegation depth must not exceed 2.
 
-For Fast, request `gpt-5.6-luna` with `max` effort when the live native spawn surface exposes those controls. Otherwise rely on the configured Luna Max subagent defaults and report routing as unverified; do not substitute another model.
+For Fast, per assignment, request `gpt-5.3-codex-spark` with `xhigh` effort when the live native spawn surface exposes those controls. If Spark controls are not exposed, or Spark is unavailable or out of quota before execution, request `gpt-5.6-luna` with `max` effort as the sole availability fallback; that pre-execution failure does not count as an implementation attempt.
 
-For Deep, request `gpt-5.6-sol` with `high` effort and a fresh context by setting `fork_turns` to `none`. Stop if that route is unavailable; do not substitute another model.
+If Spark starts and then reports quota or availability failure, stop it, reconcile partial work, and assign the same bounded scope to Luna at most once. This availability fallback does not reset the Fast quality retry budget. Do not use this fallback for code, test, review, or generic transient failures.
+
+Stop if Luna is unavailable or out of quota; never substitute Sol or another model. If runtime identity is not observable, report the configured route as unverified.
+
+For Deep, request `gpt-6-astra` with `high` effort and a fresh context by setting `fork_turns` to `none`. Stop if that route is unavailable; do not substitute another model.
 
 ## 4. Require fresh review
 
-For every review round, start a new `gpt-5.6-sol` reviewer at `high` effort with `fork_turns: none`. Stop if that route is unavailable; do not substitute another model. Give the reviewer only:
+For every review round, start a new `gpt-6-astra` reviewer at `high` effort with `fork_turns: none`. Stop if that route is unavailable; do not substitute another model. Give the reviewer only:
 
 - `GOAL`
 - `CONSTRAINTS`
@@ -73,9 +77,9 @@ Do not include plans, implementation reasoning, or earlier reviewer context. Req
 
 - `SHIP`: accept the review result for primary verification.
 - `FIX`: send the bounded fix text verbatim to the same current implementer; allow only one Fast retry, then verify and use a new reviewer.
-- `RETHINK`: route to a fresh Deep Sol High implementer.
+- `RETHINK`: route to a fresh Deep Astra High implementer.
 
-After a second non-shippable Fast attempt, route to a fresh Deep Sol High implementer. A Deep fix also requires implementation by the Deep implementer, primary verification, and another fresh reviewer.
+After a second non-shippable Fast attempt, route to a fresh Deep Astra High implementer. A Deep fix also requires implementation by the Deep implementer, primary verification, and another fresh reviewer.
 
 ## 5. Integrate
 
