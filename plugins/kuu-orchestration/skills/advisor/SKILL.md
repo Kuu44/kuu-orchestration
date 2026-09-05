@@ -58,11 +58,11 @@ State file ownership and warn that other agents share the workspace: preserve ot
 
 For Fast, request `gpt-5.6-luna` with `max` effort when the live native spawn surface exposes those controls. Otherwise rely on the configured Luna Max subagent defaults and report routing as unverified; do not substitute another model.
 
-For Deep, request `gpt-5.6-sol` with `high` effort and a fresh context by setting `fork_turns` to `none`. Stop if that route is unavailable; do not substitute another model.
+For Deep, request `gpt-6-astra` with `high` effort and a fresh context by setting `fork_turns` to `none`. Stop if that route is unavailable; do not substitute another model.
 
 ## 4. Require fresh review
 
-For every review round, start a new `gpt-5.6-sol` reviewer at `high` effort with `fork_turns: none`. Stop if that route is unavailable; do not substitute another model. Give the reviewer only:
+For every review round, start a new `gpt-6-astra` reviewer at `high` effort with `fork_turns: none`. Stop if that route is unavailable; do not substitute another model. Give the reviewer only:
 
 - `GOAL`
 - `CONSTRAINTS`
@@ -73,9 +73,9 @@ Do not include plans, implementation reasoning, or earlier reviewer context. Req
 
 - `SHIP`: accept the review result for primary verification.
 - `FIX`: send the bounded fix text verbatim to the same current implementer; allow only one Fast retry, then verify and use a new reviewer.
-- `RETHINK`: route to a fresh Deep Sol High implementer.
+- `RETHINK`: route to a fresh Deep Astra High implementer.
 
-After a second non-shippable Fast attempt, route to a fresh Deep Sol High implementer. A Deep fix also requires implementation by the Deep implementer, primary verification, and another fresh reviewer.
+After a second non-shippable Fast attempt, route to a fresh Deep Astra High implementer. A Deep fix also requires implementation by the Deep implementer, primary verification, and another fresh reviewer.
 
 ## 5. Integrate
 
