@@ -62,11 +62,11 @@ If Spark starts and then reports quota or availability failure, stop it, reconci
 
 Stop if Luna is unavailable or out of quota; never substitute Sol or another model. If runtime identity is not observable, report the configured route as unverified.
 
-For Deep, request `gpt-6-astra` with `high` effort and a fresh context by setting `fork_turns` to `none`. Stop if that route is unavailable; do not substitute another model.
+For Deep, request Astra Light: `gpt-6-astra` with `low` effort and a fresh context by setting `fork_turns` to `none`. Astra Light is a routing label for that model/effort pair, not a separate model. Stop if that route is unavailable; do not substitute another model.
 
 ## 4. Require fresh review
 
-For every review round, start a new `gpt-6-astra` reviewer at `high` effort with `fork_turns: none`. Stop if that route is unavailable; do not substitute another model. Give the reviewer only:
+For every review round, start a new Astra Light `gpt-6-astra` reviewer at `low` effort with `fork_turns: none`. Stop if that route is unavailable; do not substitute another model. Give the reviewer only:
 
 - `GOAL`
 - `CONSTRAINTS`
@@ -77,9 +77,9 @@ Do not include plans, implementation reasoning, or earlier reviewer context. Req
 
 - `SHIP`: accept the review result for primary verification.
 - `FIX`: send the bounded fix text verbatim to the same current implementer; allow only one Fast retry, then verify and use a new reviewer.
-- `RETHINK`: route to a fresh Deep Astra High implementer.
+- `RETHINK`: route to a fresh Deep Astra Light implementer.
 
-After a second non-shippable Fast attempt, route to a fresh Deep Astra High implementer. A Deep fix also requires implementation by the Deep implementer, primary verification, and another fresh reviewer.
+After a second non-shippable Fast attempt, route to a fresh Deep Astra Light implementer. A Deep fix also requires implementation by the Deep implementer, primary verification, and another fresh reviewer.
 
 ## 5. Integrate
 
