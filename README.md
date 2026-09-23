@@ -12,16 +12,11 @@ Native subagents are the default. A user-visible Codex task is reserved for work
 
 ## Prerequisites
 
-Set these Codex defaults in `~/.codex/config.toml`:
+Set the delegation depth in `~/.codex/config.toml`. Primary/default model settings are independent from Advisor lane routing; keep those values at your preferred baseline because the skill requests each lane's model and effort explicitly per assignment.
 
 ```toml
-model = "gpt-5.6-luna"
-model_reasoning_effort = "max"
-
 [agents]
 max_depth = 2
-default_subagent_model = "gpt-5.6-luna"
-default_subagent_reasoning_effort = "max"
 ```
 
 Fast implementation requests GPT-6 Luna (`gpt-6-luna`) with medium effort per assignment. If the requested route is unavailable, report it as unverified and stop rather than substituting another model.
