@@ -1,21 +1,37 @@
 {
   "name": "kuu-orchestration",
-  "version": "0.1.1",
-  "description": "Native-subagent delivery with Fast GPT-6 Luna medium implementation, Deep GPT-6 Sol xhigh implementation, fresh GPT-6 Sol xhigh review, and primary integration.",
-  "author": { "name": "Kuu44", "url": "https://github.com/Kuu44" },
+  "version": "0.1.1+codex.20260928161316",
+  "description": "Native-subagent delivery with version-flexible Luna Fast work, Sol or Astra Deep work and fresh review, disclosed availability fallbacks, and explicit user model overrides.",
+  "author": {
+    "name": "Kuu44",
+    "url": "https://github.com/Kuu44"
+  },
   "homepage": "https://github.com/Kuu44/kuu-orchestration#readme",
   "repository": "https://github.com/Kuu44/kuu-orchestration",
   "license": "MIT",
-  "keywords": ["codex", "orchestration", "multi-agent", "gpt-6-luna", "gpt-6-sol", "gpt-6"],
+  "keywords": [
+    "codex",
+    "orchestration",
+    "multi-agent",
+    "luna",
+    "sol",
+    "astra",
+    "model-routing"
+  ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Kuu Orchestration",
     "shortDescription": "Route Fast and Deep implementation through isolated review.",
-    "longDescription": "Kuu Orchestration keeps decomposition, routing, integration, and acceptance in the primary task. It uses native GPT-6 Luna (gpt-6-luna with medium effort) subagents for bounded Fast implementation, GPT-6 Sol (gpt-6-sol with xhigh effort) subagents for Deep implementation, and a fresh GPT-6 Sol reviewer for every review round. User-visible tasks are reserved for durable work that must outlive the parent, needs direct follow-up, owns an independent worktree, or waits on external state.",
+    "longDescription": "Kuu Orchestration keeps decomposition, routing, integration, and acceptance in the primary task. Fast uses an available GPT Luna version; Deep and fresh Review use any available GPT Sol version or Astra, with suitable disclosed alternatives if neither family is available. Explicit user choices can replace the model or effort in any lane. Models are resolved from live host capabilities without weakening scope, permissions, or fresh-review isolation. User-visible tasks remain reserved for authorized durable work.",
     "developerName": "Kuu44",
     "category": "Productivity",
-    "capabilities": ["Interactive", "Write"],
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
     "websiteURL": "https://github.com/Kuu44/kuu-orchestration",
-    "defaultPrompt": ["Use Kuu Orchestration to route, implement, review, integrate, and verify this software change."]
+    "defaultPrompt": [
+      "Use Kuu Orchestration to route, implement, review, integrate, and verify this software change."
+    ]
   }
 }
