@@ -4,9 +4,9 @@ Kuu Orchestration is a small Codex plugin for native-subagent software delivery.
 
 | Lane | Route | Use it when |
 |---|---|---|
-| Fast | GPT-6 Luna (`gpt-6-luna`, medium effort) | One module or two tightly coupled files, known pattern, reversible change, simple acceptance check |
-| Deep | GPT-6 Sol (`gpt-6-sol`, xhigh effort) | Cross-module or shared-contract work, unclear shape, hard rollback, or sensitive behavior |
-| Review | Fresh GPT-6 Sol (`gpt-6-sol`, xhigh effort) | Every implementation round, with only the goal, constraints, acceptance criteria, diff, and evidence |
+| Fast | Any available GPT Luna version; medium effort when supported | One module or two tightly coupled files, known pattern, reversible change, simple acceptance check |
+| Deep | Any available GPT Sol version or Astra; xhigh effort when supported | Cross-module or shared-contract work, unclear shape, hard rollback, or sensitive behavior |
+| Review | Fresh GPT Sol or Astra agent; xhigh effort when supported | Every implementation round, with only the goal, constraints, acceptance criteria, diff, and evidence |
 
 Native subagents are the default. A user-visible Codex task is reserved for work that must outlive the parent task, needs direct user follow-up, requires durable independent worktree ownership, or waits on external state. Delegation may nest only to depth 2, and an implementer may create at most one bounded child.
 
@@ -19,9 +19,17 @@ Set the delegation depth in `~/.codex/config.toml`. Primary/default model settin
 max_depth = 2
 ```
 
-Fast implementation requests GPT-6 Luna (`gpt-6-luna`) with medium effort per assignment. If the requested route is unavailable, report it as unverified and stop rather than substituting another model.
+## Model selection and user overrides
 
-Deep implementation and every fresh reviewer request GPT-6 Sol (`gpt-6-sol`) explicitly with xhigh effort. Stop if that route is unavailable. There is no model fallback.
+The lane is the job; the model is who does it. Changing the model does not remove fresh review, safety boundaries, or acceptance checks. The primary/default model remains independent, and this plugin does not override an applicable no-delegation instruction.
+
+- Resolve exact IDs and supported effort levels from the live host. GPT-5.6, GPT-6, and later available versions in the preferred families are allowed; examples are not a fixed allowlist. Choose among them for the task's capability, latency, and cost needs.
+- Fast prefers Luna. Deep and Review accept Sol or Astra equally; when neither family is available, a suitable authorized alternative is allowed and must be disclosed. Fast needs user authorization to leave Luna.
+- Explicit user model/effort choices override these defaults for their stated scope. For example: "Use GPT-5.6 Sol for Deep," "Use Astra for review," or "Use GPT-6 Sol for Fast in this task." Resolve a family request against available models; do not invent an ID. If a pinned model/effort is unavailable, ask unless fallback was already authorized.
+- Do not silently substitute models, enable providers, change global configuration, or bypass data-access/cost boundaries. Code/test/review failures and full agent slots do not justify availability fallback.
+- If availability fails after work starts, reconcile partial work before one bounded replacement attempt. Deep and Review keep fresh context. Unobservable runtime identity is reported as unverified, not assumed.
+
+The [Advisor skill](plugins/kuu-orchestration/skills/advisor/SKILL.md#select-the-model-for-each-assignment) is the authoritative routing policy. [Model-routing scenarios](tests/model-routing.md) cover expected decisions and release checks. Host controls still determine which routes can actually be enforced; see the [official subagent documentation](https://learn.chatgpt.com/docs/agent-configuration/subagents).
 
 ## Install
 
